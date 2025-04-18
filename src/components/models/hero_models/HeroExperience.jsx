@@ -1,11 +1,35 @@
 import { OrbitControls } from '@react-three/drei';
-import { Canvas } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useMediaQuery } from 'react-responsive';
-
 import { Room } from './Room';
 import HeroLights from './HeroLights';
 import Particles from './Particles';
 import { Suspense, useEffect, useRef, useState } from 'react';
+
+// 🔁 Oscillating room component (safe useFrame usage)
+const OscillatingRoom = ({ isMobile }) => {
+    const groupRef = useRef();
+
+    useFrame(({ clock }) => {
+        const t = clock.getElapsedTime();
+        const baseRotation = -Math.PI / 4;
+        const amplitude = Math.PI / 6;
+        if (groupRef.current) {
+            groupRef.current.rotation.y =
+                baseRotation + Math.sin(t * 0.25) * amplitude;
+        }
+    });
+
+    return (
+        <group
+            ref={groupRef}
+            scale={isMobile ? 0.7 : 1}
+            position={[0, -3.5, 0]}
+        >
+            <Room />
+        </group>
+    );
+};
 
 const HeroExperience = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
@@ -31,7 +55,7 @@ const HeroExperience = () => {
     useEffect(() => {
         if (controlsRef.current) {
             controlsRef.current.enableRotate = !isScrolling;
-            controlsRef.current.enableZoom = !isScrolling && !isTablet;
+            controlsRef.current.enableZoom = false;
             controlsRef.current.enablePan = false;
         }
     }, [isScrolling, isTablet]);
@@ -42,19 +66,13 @@ const HeroExperience = () => {
             <Suspense fallback={null}>
                 <HeroLights />
                 <Particles count={100} />
-                <group
-                    scale={isMobile ? 0.7 : 1}
-                    position={[0, -3.5, 0]}
-                    rotation={[0, -Math.PI / 4, 0]}
-                >
-                    <Room />
-                </group>
+                <OscillatingRoom isMobile={isMobile} />
             </Suspense>
 
             <OrbitControls
                 ref={controlsRef}
                 enablePan={false}
-                enableZoom={!isTablet}
+                enableZoom={false}
                 maxDistance={20}
                 minDistance={5}
                 minPolarAngle={Math.PI / 5}
@@ -62,12 +80,9 @@ const HeroExperience = () => {
                 enableDamping
                 dampingFactor={0.05}
                 makeDefault
-                autoRotate
-                autoRotateSpeed={0.5}
             />
         </Canvas>
     );
 };
-
 
 export default HeroExperience;
