@@ -36,6 +36,10 @@ section {
   .flex-col-center {
     @apply flex flex-col justify-center items-center;
   }
+  .hover-glow {
+    @apply transition-transform transform hover:scale-110;
+    filter: drop-shadow(0 0 5px #ffffff70);
+  }
 }
 
 @layer components {

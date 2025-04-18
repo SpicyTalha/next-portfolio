@@ -15,6 +15,10 @@ const navLinks = [
         name: 'Skills',
         link: '#skills',
     },
+    {
+        name: 'Tech',
+        link: '#techlogos',
+    },
 ];
 
 const projects = [
@@ -185,6 +189,45 @@ const socialImgs = [
     },
 ];
 
+// constants.js
+const techLogos = [
+    { name: 'Bootstrap', class: 'devicon-bootstrap-plain colored text-5xl' },
+    { name: 'C', class: 'devicon-c-plain colored text-5xl' },
+    { name: 'C++', class: 'devicon-cplusplus-plain colored text-5xl' },
+    { name: 'CSS3', class: 'devicon-css3-plain colored text-5xl' },
+    { name: 'Express', class: 'devicon-express-original colored text-5xl' },
+    { name: 'Figma', class: 'devicon-figma-plain colored text-5xl' },
+    { name: 'Firebase', class: 'devicon-firebase-plain colored text-5xl' },
+    { name: 'Git', class: 'devicon-git-plain colored text-5xl' },
+    { name: 'HTML5', class: 'devicon-html5-plain colored text-5xl' },
+    { name: 'Java', class: 'devicon-java-plain colored text-5xl' },
+    { name: 'JavaScript', class: 'devicon-javascript-plain colored text-5xl' },
+    { name: 'Kotlin', class: 'devicon-kotlin-plain colored text-5xl' },
+    { name: 'Linux', class: 'devicon-linux-plain colored text-5xl' },
+    { name: 'MongoDB', class: 'devicon-mongodb-plain colored text-5xl' },
+    { name: 'MySQL', class: 'devicon-mysql-plain colored text-5xl' },
+    { name: 'Node.js', class: 'devicon-nodejs-plain colored text-5xl' },
+    { name: 'OpenCV', class: 'devicon-opencv-plain colored text-5xl' },
+    { name: 'PostgreSQL', class: 'devicon-postgresql-plain colored text-5xl' },
+    { name: 'Python', class: 'devicon-python-plain colored text-5xl' },
+    { name: 'React', class: 'devicon-react-original colored text-5xl' },
+    { name: 'Redux', class: 'devicon-redux-original colored text-5xl' },
+    {
+        name: 'TailwindCSS',
+        class: 'devicon-tailwindcss-plain colored text-5xl',
+    },
+    {
+        name: 'TensorFlow',
+        class: 'devicon-tensorflow-original colored text-5xl',
+    },
+    { name: 'TypeScript', class: 'devicon-typescript-plain colored text-5xl' },
+    { name: 'VSCode', class: 'devicon-vscode-plain colored text-5xl' },
+    { name: 'NPM', class: 'devicon-npm-original-wordmark colored text-5xl' },
+    { name: 'Yarn', class: 'devicon-yarn-plain colored text-5xl' },
+];
+
+
+
 export {
     words,
     abilities,
@@ -198,4 +241,5 @@ export {
     techStackImgs,
     navLinks,
     projects,
+    techLogos
 };
