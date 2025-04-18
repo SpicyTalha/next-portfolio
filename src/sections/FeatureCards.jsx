@@ -1,65 +1,127 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { abilities } from '../constants';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // ⬅️ import this!
+import GlowCard from '../components/GlowCard';
+import { projects } from '../constants';
 import TitleHeader from '../components/TitleHeader';
+import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); // ⬅️ register the plugin
 
-const FeatureCards = () => {
-    const cardsRef = useRef([]);
+const ProjectSection = () => {
+    const [expanded, setExpanded] = useState(false);
+    const isMobile = useIsMobile();
+    const containerRef = useRef(null);
+    const itemsRef = useRef([]);
 
     useEffect(() => {
-        cardsRef.current.forEach((card, i) => {
-            gsap.fromTo(
-                card,
-                {
-                    opacity: 0,
-                    y: 50,
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse',
-                    },
-                    delay: i * 0.15, // stagger manually
-                }
-            );
+        if (!containerRef.current) return;
+
+        gsap.to(containerRef.current, {
+            height: 'auto',
+            duration: 0.5,
+            ease: 'power2.inOut',
+            onComplete: () => {
+                // Recalculate ScrollTrigger positions after expanding/collapsing
+                setTimeout(() => {
+                    ScrollTrigger.refresh();
+                }, 100); // small delay for smoother results
+            },
         });
-    }, []);
+
+        gsap.fromTo(
+            itemsRef.current,
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.4,
+                stagger: 0.05,
+                ease: 'power2.out',
+            }
+        );
+    }, [expanded]);
+
+    const getVisibleProjects = () => {
+        if (expanded) return projects;
+        return isMobile ? projects.slice(0, 1) : projects.slice(0, 3);
+    };
+
+    const toggleExpanded = () => setExpanded((prev) => !prev);
+
+    const visibleProjects = getVisibleProjects();
 
     return (
-        <div className="w-full padding-x-lg md:mt-40 mt-20">
+        <section id="projects" className="w-full padding-x-lg">
             <div className="w-full h-full md:px-20 px-5">
                 <TitleHeader
-                    title="Built on Principles That Deliver"
-                    sub="💎 Core values that shape every project."
+                    title="Projects I’ve Built"
+                    sub="⚙️ Bringing ideas to life."
                 />
-                <div className="mx-auto grid-3-cols mt-16 relative">
-                    {abilities.map(({ imgPath, title, desc }, i) => (
+
+                <div
+                    ref={containerRef}
+                    className="grid-3-cols mt-16 overflow-hidden transition-all duration-500"
+                >
+                    {visibleProjects.map((project, index) => (
                         <div
-                            key={title}
-                            ref={(el) => (cardsRef.current[i] = el)}
-                            className="card-border rounded-xl p-8 flex flex-col gap-4 opacity-0 transform translate-y-12"
+                            key={index}
+                            ref={(el) => (itemsRef.current[index] = el)}
                         >
-                            <div className="size-14 flex items-center justify-center rounded-full">
-                                <img src={imgPath} alt={title} />
-                            </div>
-                            <h3 className="text-white text-2xl font-semibold mt-2">
-                                {title}
-                            </h3>
-                            <p className="text-white-50 text-lg">{desc}</p>
+                            <GlowCard
+                                showStars={false}
+                                index={index}
+                                card={{ review: '' }}
+                            >
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    width={500}
+                                    height={300}
+                                    className="rounded-lg mb-4 object-cover w-full h-56"
+                                />
+                                <h3 className="text-xl font-semibold mb-2">
+                                    {project.title}
+                                </h3>
+                                <p className="text-white-50 mb-4">
+                                    {project.description}
+                                </p>
+                                <a
+                                    href={project.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-blue-400 hover:underline"
+                                >
+                                    View on GitHub →
+                                </a>
+                            </GlowCard>
                         </div>
                     ))}
                 </div>
+
+                {/* Toggle Button */}
+                {projects.length > (isMobile ? 1 : 3) && (
+                    <div className="flex justify-center mt-8">
+                        <button
+                            onClick={toggleExpanded}
+                            className="flex items-center gap-2 text-white-80 hover:text-white-100 transition"
+                        >
+                            {expanded ? (
+                                <>
+                                    Show Less <ChevronUp size={18} />
+                                </>
+                            ) : (
+                                <>
+                                    Show More <ChevronDown size={18} />
+                                </>
+                            )}
+                        </button>
+                    </div>
+                )}
             </div>
-        </div>
+        </section>
     );
 };
 
-export default FeatureCards;
+export default ProjectSection;
