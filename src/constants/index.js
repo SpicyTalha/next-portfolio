@@ -226,8 +226,6 @@ const techLogos = [
     { name: 'Yarn', class: 'devicon-yarn-plain colored text-5xl' },
 ];
 
-
-
 export {
     words,
     abilities,
@@ -241,5 +239,5 @@ export {
     techStackImgs,
     navLinks,
     projects,
-    techLogos
+    techLogos,
 };

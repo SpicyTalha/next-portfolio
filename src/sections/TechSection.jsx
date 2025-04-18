@@ -37,7 +37,7 @@ const TechSection = () => {
     }, []);
 
     return (
-        <section className="section-padding text-center" id='techlogos'>
+        <section className="section-padding text-center" id="techlogos">
             <div className="w-full h-full md:px-20 px-5">
                 <TitleHeader
                     title="Teknologia I Use"
