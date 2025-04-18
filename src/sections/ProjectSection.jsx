@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; // ⬅️ import this!
 import GlowCard from '../components/GlowCard';
 import { projects } from '../constants';
 import TitleHeader from '../components/TitleHeader';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useIsMobile } from '../hooks/useIsMobile';
+
+gsap.registerPlugin(ScrollTrigger); // ⬅️ register the plugin
 
 const ProjectSection = () => {
     const [expanded, setExpanded] = useState(false);
@@ -19,6 +22,12 @@ const ProjectSection = () => {
             height: 'auto',
             duration: 0.5,
             ease: 'power2.inOut',
+            onComplete: () => {
+                // Recalculate ScrollTrigger positions after expanding/collapsing
+                setTimeout(() => {
+                    ScrollTrigger.refresh();
+                }, 100); // small delay for smoother results
+            },
         });
 
         gsap.fromTo(
