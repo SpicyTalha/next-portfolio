@@ -60,6 +60,17 @@ jobs:
             - name: Install dependencies
               run: npm install
 
+            - name: Fetch Environment Variables from SSM
+              id: fetch_ssm
+              run: |
+                TEMPLATE_ID=$(aws ssm get-parameter --name "/prod/spicyportfolio/emailjs/template-id" --query "Parameter.Value" --output text)
+                SERVICE_ID=$(aws ssm get-parameter --name "/prod/spicyportfolio/service-id" --query "Parameter.Value" --output text)
+                PUBLIC_KEY=$(aws ssm get-parameter --name "/prod/spicyportfolio/public-key" --query "Parameter.Value" --output text)
+
+                echo "VITE_APP_EMAILJS_TEMPLATE_ID=$TEMPLATE_ID" >> $GITHUB_ENV
+                echo "VITE_APP_EMAILJS_SERVICE_ID=$SERVICE_ID" >> $GITHUB_ENV
+                echo "VITE_APP_EMAILJS_PUBLIC_KEY=$PUBLIC_KEY" >> $GITHUB_ENV
+
             - name: Build project
               run: npm run build
 
