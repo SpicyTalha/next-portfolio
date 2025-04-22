@@ -3,7 +3,7 @@ import gsap from 'gsap';
 
 import TitleHeader from '../components/TitleHeader';
 import TechIconCardExperience from '../components/models/tech_logos/TechIconCardExperience';
-import { techStackIcons } from '../constants';
+import { techStackIcons, techStackImgs } from '../constants';
 // import { techStackImgs } from "../constants";
 
 const TechStack = () => {
@@ -54,10 +54,10 @@ const TechStack = () => {
                             <div className="tech-card-content">
                                 {/* The tech-icon-wrapper div contains the TechIconCardExperience component, 
                     which renders the 3D model of the tech stack icon. */}
-                                <div className="tech-icon-wrapper">
-                                    <TechIconCardExperience
-                                        model={techStackIcon}
-                                    />
+                                <div className="tech-icon-wrapper flex justify-center items-center py-6">
+                                    <i
+                                        className={`${techStackIcon.class} text-6xl sm:text-7xl md:text-9xl`}
+                                    ></i>
                                 </div>
                                 {/* The padding-x and w-full classes are used to add horizontal padding to the 
                     text and make it take up the full width of the component. */}
