@@ -136,7 +136,7 @@ const expCards = [
     {
         review: 'Talha brought creativity and technical expertise to the team, significantly improving our backend performance. His work has been invaluable in delivering faster experiences.',
         imgPath: '/images/parhlai.png',
-        logoPath: '/images/plogo.png',
+        logoPath: '/images/parhlain.png',
         title: 'Backend Developer',
         date: 'November 2024 - Present',
         responsibilities: [

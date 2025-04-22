@@ -152,7 +152,7 @@ const Contact = () => {
                     <div className="xl:col-span-7">
                         <div className="flex h-full rounded-xl overflow-hidden contact-image">
                             <img
-                                src="/images/contactme.jpg"
+                                src="/images/contactmee.png"
                                 alt="contact me"
                                 className="w-full h-full object-cover"
                             />
