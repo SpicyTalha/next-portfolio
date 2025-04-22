@@ -77,11 +77,13 @@ const ProjectSection = () => {
                         <div
                             key={index}
                             ref={(el) => (itemsRef.current[index] = el)}
+                            className="h-full"
                         >
                             <GlowCard
                                 showStars={false}
                                 index={index}
                                 card={{ review: '' }}
+                                className="h-full flex flex-col"
                             >
                                 <img
                                     src={project.image}
@@ -100,7 +102,7 @@ const ProjectSection = () => {
                                     href={project.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-blue-400 hover:underline"
+                                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 shadow-lg"
                                 >
                                     View on GitHub →
                                 </a>

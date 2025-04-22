@@ -21,46 +21,46 @@ const navLinks = [
 
 const projects = [
     {
-        title: 'Title',
+        title: 'Battleship',
         description:
-            'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-        github: 'https://github.com/yourusername/portfolio',
-        image: '/images/projects/portfolio.png',
+            'A fun take on the classic game, featuring an AI opponent and a custom bot system, built with Python and Tkinter.',
+        github: 'https://github.com/SpicyTalha/BattleShip',
+        image: '/images/battleship.png',
     },
     {
-        title: 'Title',
+        title: 'EmoScan',
         description:
-            'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-        github: 'https://github.com/yourusername/task-manager',
-        image: '/images/projects/task-manager.png',
+            'A Python-powered sentiment analysis tool that detects emotional tone from text input using natural language processing.',
+        github: 'https://github.com/SpicyTalha/EmoScan',
+        image: '/images/emoscan.png',
     },
     {
-        title: 'Title',
+        title: 'PakZone',
         description:
-            'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-        github: 'https://github.com/yourusername/weather-app',
-        image: '/images/projects/weather-app.png',
+            'A B2C e-commerce platform where users in Pakistan can browse and purchase digital products with ease.',
+        github: 'https://github.com/SpicyTalha/PakZone-frontend',
+        image: '/images/pakzone.png',
     },
     {
-        title: 'Title',
+        title: 'SpeakSigns',
         description:
-            'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-        github: 'https://github.com/yourusername/ecommerce-store',
-        image: '/images/projects/ecommerce.png',
+            'An Android app that translates sign language into text using real-time camera input and machine learning with MediaPipe.',
+        github: 'https://github.com/SpicyTalha/SpeakSigns',
+        image: '/images/silentspeech2.png',
     },
     {
-        title: 'Title',
+        title: 'HealthSphere',
         description:
-            'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-        github: 'https://github.com/yourusername/chat-app',
-        image: '/images/projects/chat-app.png',
+            'A comprehensive Hospital Management System web application developed with React, Express, Node, and PostgreSQL',
+        github: 'https://github.com/SpicyTalha/HealthSphere',
+        image: '/images/ehealthhub.png',
     },
     {
-        title: 'Title',
+        title: 'Etch-a-Sketch',
         description:
-            'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-        github: 'https://github.com/yourusername/blog-platform',
-        image: '/images/projects/blog.png',
+            'A canvas built with JavaScript that allows users to draw and create pixel art, featuring a color picker and grid size adjustment.',
+        github: 'https://github.com/SpicyTalha/etch-a-sketch',
+        image: '/images/etchasketch.png',
     },
 ];
 
