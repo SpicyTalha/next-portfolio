@@ -10,72 +10,54 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Experience = () => {
     useGSAP(() => {
-        // Loop through each timeline card and animate them in
-        // as the user scrolls to each card
+        const isMobile = window.innerWidth <= 768;
+        const startCard = isMobile ? 'top 65%' : 'top 80%';
+        const startText = isMobile ? 'top 50%' : 'top 60%';
+
         gsap.utils.toArray('.timeline-card').forEach((card) => {
-            // Animate the card coming in from the left
-            // and fade in
             gsap.from(card, {
-                // Move the card in from the left
                 xPercent: -100,
-                // Make the card invisible at the start
                 opacity: 0,
-                // Set the origin of the animation to the left side of the card
                 transformOrigin: 'left left',
-                // Animate over 1 second
                 duration: 1,
-                // Use a power2 ease-in-out curve
                 ease: 'power2.inOut',
-                // Trigger the animation when the card is 80% of the way down the screen
                 scrollTrigger: {
-                    // The card is the trigger element
                     trigger: card,
-                    // Trigger the animation when the card is 80% down the screen
-                    start: 'top 80%',
+                    start: startCard,
+                    toggleActions: 'play none none reset',
                 },
             });
         });
+
         gsap.to('.timeline', {
-            // Set the origin of the animation to the bottom of the timeline
             transformOrigin: 'bottom bottom',
-            // Animate the timeline height over 1 second
             ease: 'power1.inOut',
-            // Trigger the animation when the timeline is at the top of the screen
-            // and end it when the timeline is at 70% down the screen
             scrollTrigger: {
                 trigger: '.timeline',
-                start: 'top center',
-                end: '70% center',
-                // Update the animation as the user scrolls
+                start: isMobile ? 'top bottom' : 'top center',
+                end: isMobile ? '50% center' : '70% center',
                 onUpdate: (self) => {
-                    // Scale the timeline height as the user scrolls
-                    // from 1 to 0 as the user scrolls up the screen
                     gsap.to('.timeline', {
                         scaleY: 1 - self.progress,
                     });
                 },
+                toggleActions: 'play none none reset',
             },
         });
+
         gsap.utils.toArray('.expText').forEach((text) => {
             gsap.from(text, {
-                // Set the opacity of the text to 0
                 opacity: 0,
-                // Move the text from the left to its final position
-                // (xPercent: 0 means the text is at its final position)
                 xPercent: 0,
-                // Animate over 1 second
                 duration: 1,
-                // Use a power2 ease-in-out curve
                 ease: 'power2.inOut',
-                // Trigger the animation when the text is 60% down the screen
                 scrollTrigger: {
-                    // The text is the trigger element
                     trigger: text,
-                    // Trigger the animation when the text is 60% down the screen
-                    start: 'top 60%',
+                    start: startText,
+                    toggleActions: 'play none none reset',
                 },
             });
-        }, '<'); // position parameter - insert at the start of the animation
+        });
     }, []);
 
     return (

@@ -18,30 +18,39 @@ const ProjectSection = () => {
     useEffect(() => {
         if (!containerRef.current) return;
 
+        const triggerStart = isMobile ? 'top 60%' : 'top 80%'; // 🌟 Make scroll trigger dynamic!
+
         gsap.to(containerRef.current, {
             height: 'auto',
             duration: 0.5,
             ease: 'power2.inOut',
             onComplete: () => {
-                // Recalculate ScrollTrigger positions after expanding/collapsing
                 setTimeout(() => {
                     ScrollTrigger.refresh();
-                }, 100); // small delay for smoother results
+                }, 100);
             },
         });
 
-        gsap.fromTo(
-            itemsRef.current,
-            { opacity: 0, y: 20 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 0.4,
-                stagger: 0.05,
-                ease: 'power2.out',
-            }
-        );
-    }, [expanded]);
+        // 🛠 Now animate each item individually with ScrollTrigger
+        itemsRef.current.forEach((item) => {
+            if (!item) return;
+            gsap.fromTo(
+                item,
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: item,
+                        start: triggerStart,
+                        toggleActions: 'play none none none',
+                    },
+                }
+            );
+        });
+    }, [expanded, isMobile]);
 
     const getVisibleProjects = () => {
         if (expanded) return projects;

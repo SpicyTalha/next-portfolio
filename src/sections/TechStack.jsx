@@ -2,8 +2,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
 import TitleHeader from '../components/TitleHeader';
-import TechIconCardExperience from '../components/models/tech_logos/TechIconCardExperience';
-import { techStackIcons} from '../constants';
+import { techStackIcons } from '../constants';
 // import { techStackImgs } from "../constants";
 
 const TechStack = () => {
@@ -12,20 +11,19 @@ const TechStack = () => {
         gsap.fromTo(
             '.tech-card',
             {
-                // Initial values
-                y: 50, // Move the cards down by 50px
-                opacity: 0, // Set the opacity to 0
+                y: 50,
+                opacity: 0,
             },
             {
-                // Final values
-                y: 0, // Move the cards back to the top
-                opacity: 1, // Set the opacity to 1
-                duration: 1, // Duration of the animation
-                ease: 'power2.inOut', // Ease of the animation
-                stagger: 0.2, // Stagger the animation by 0.2 seconds
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: 'power2.inOut',
+                stagger: 0.2,
                 scrollTrigger: {
-                    trigger: '#skills', // Trigger the animation when the user scrolls to the #skills wrapper
-                    start: 'top center', // Start the animation when the top of the wrapper is at the center of the screen
+                    trigger: '#skills',
+                    start: 'top center',
+                    toggleActions: 'play none none reset', // <-- this line!
                 },
             }
         );
@@ -56,7 +54,7 @@ const TechStack = () => {
                     which renders the 3D model of the tech stack icon. */}
                                 <div className="tech-icon-wrapper flex justify-center items-center py-6">
                                     <i
-                                        className={`${techStackIcon.class} text-6xl sm:text-7xl md:text-9xl`}
+                                        className={`${techStackIcon.class} text-9xl sm:text-9xl md:text-9xl`}
                                     ></i>
                                 </div>
                                 {/* The padding-x and w-full classes are used to add horizontal padding to the 
