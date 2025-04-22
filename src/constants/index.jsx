@@ -1,8 +1,6 @@
+import { SiInstagram, SiX, SiLinkedin, SiGithub } from 'react-icons/si';
+
 const navLinks = [
-    {
-        name: 'Work',
-        link: '#work',
-    },
     {
         name: 'Projects',
         link: '#projects',
@@ -124,15 +122,14 @@ const techStackImgs = [
 ];
 
 const techStackIcons = [
-    { name: 'React', class: 'devicon-react-original colored' },
-    { name: 'Next.js', class: 'devicon-nextjs-original' },
-    { name: 'Tailwind CSS', class: 'devicon-tailwindcss-plain colored' },
-    { name: 'JavaScript', class: 'devicon-javascript-plain colored' },
-    { name: 'TypeScript', class: 'devicon-typescript-plain colored' },
-    { name: 'Git', class: 'devicon-git-plain colored' },
-    { name: 'GitHub', class: 'devicon-github-original' },
-    { name: 'Node.js', class: 'devicon-nodejs-plain colored' },
-    { name: 'GSAP', class: 'devicon-gsap-plain colored' },
+    { name: 'Frontend Developer', class: 'devicon-tailwindcss-plain colored' },
+    { name: 'Backend Developer', class: 'devicon-nodejs-plain colored' },
+    { name: 'Project Manager', class: 'devicon-git-plain colored' },
+    { name: 'Unit Testing', class: 'devicon-postman-plain colored' },
+    {
+        name: 'Automation',
+        class: 'devicon-amazonwebservices-plain-wordmark colored',
+    },
 ];
 
 const expCards = [
@@ -162,15 +159,18 @@ const testimonials = [];
 const socialImgs = [
     {
         name: 'insta',
-        imgPath: '/images/insta.png',
-    },
-    {
-        name: 'x',
-        imgPath: '/images/x.png',
+        icon: <SiInstagram size={24} />, // Use JSX for react-icons
+        link: 'https://www.instagram.com/_spicify/',
     },
     {
         name: 'linkedin',
-        imgPath: '/images/linkedin.png',
+        icon: <SiLinkedin size={24} />, // Use JSX for react-icons
+        link: 'https://linkedin.com/in/muhammad-talha-765624276',
+    },
+    {
+        name: 'github',
+        icon: <SiGithub size={24} />, // Use JSX for react-icons
+        link: 'https://github.com/SpicyTalha',
     },
 ];
 
@@ -181,19 +181,16 @@ const techLogos = [
     { name: 'C++', class: 'devicon-cplusplus-plain colored text-5xl' },
     { name: 'CSS3', class: 'devicon-css3-plain colored text-5xl' },
     { name: 'Express', class: 'devicon-express-original colored text-5xl' },
-    { name: 'Figma', class: 'devicon-figma-plain colored text-5xl' },
     { name: 'Firebase', class: 'devicon-firebase-plain colored text-5xl' },
     { name: 'Git', class: 'devicon-git-plain colored text-5xl' },
     { name: 'HTML5', class: 'devicon-html5-plain colored text-5xl' },
     { name: 'Java', class: 'devicon-java-plain colored text-5xl' },
     { name: 'JavaScript', class: 'devicon-javascript-plain colored text-5xl' },
     { name: 'Kotlin', class: 'devicon-kotlin-plain colored text-5xl' },
-    { name: 'Linux', class: 'devicon-linux-plain colored text-5xl' },
     { name: 'MongoDB', class: 'devicon-mongodb-plain colored text-5xl' },
     { name: 'MySQL', class: 'devicon-mysql-plain colored text-5xl' },
     { name: 'Node.js', class: 'devicon-nodejs-plain colored text-5xl' },
     { name: 'OpenCV', class: 'devicon-opencv-plain colored text-5xl' },
-    { name: 'PostgreSQL', class: 'devicon-postgresql-plain colored text-5xl' },
     { name: 'Python', class: 'devicon-python-plain colored text-5xl' },
     { name: 'React', class: 'devicon-react-original colored text-5xl' },
     { name: 'Redux', class: 'devicon-redux-original colored text-5xl' },
@@ -206,9 +203,9 @@ const techLogos = [
         class: 'devicon-tensorflow-original colored text-5xl',
     },
     { name: 'TypeScript', class: 'devicon-typescript-plain colored text-5xl' },
-    { name: 'VSCode', class: 'devicon-vscode-plain colored text-5xl' },
     { name: 'NPM', class: 'devicon-npm-original-wordmark colored text-5xl' },
     { name: 'Yarn', class: 'devicon-yarn-plain colored text-5xl' },
+    { name: 'Postman', class: 'devicon-postman-plain colored' },
 ];
 
 export {
