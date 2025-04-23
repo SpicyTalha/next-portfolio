@@ -26,6 +26,12 @@ const HeroLights = () => (
             intensity={60}
             color="#9d4edd"
         />
+        <directionalLight
+            position={[2, 10, 5]}
+            intensity={1}
+            color="#ffffff"
+            castShadow
+        />
         {/* area light for soft moody fill */}
         <primitive
             object={new THREE.RectAreaLight('#a259ff', 8, 3, 2)}
