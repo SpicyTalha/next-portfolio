@@ -10,32 +10,33 @@ const TechSection = () => {
     const iconsRef = useRef([]);
 
     useEffect(() => {
-        iconsRef.current.forEach((icon, index) => {
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: icon,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse',
-                },
+        const animate = () => {
+            iconsRef.current.forEach((icon, index) => {
+                gsap.fromTo(
+                    icon,
+                    { opacity: 0, y: 30, scale: 0.8 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.4,
+                        ease: 'power2.out',
+                        delay: index * 0.05,
+                        scrollTrigger: {
+                            trigger: icon,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse',
+                        },
+                    }
+                );
             });
+        };
 
-            tl.fromTo(
-                icon,
-                {
-                    opacity: 0,
-                    y: 30,
-                    scale: 0.8,
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.4,
-                    ease: 'power2.out',
-                    delay: index * 0.05,
-                }
-            );
-        });
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(animate);
+        } else {
+            setTimeout(animate, 300);
+        }
     }, []);
 
     return (

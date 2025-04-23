@@ -10,29 +10,35 @@ const FeatureCards = () => {
     const cardsRef = useRef([]);
 
     useEffect(() => {
-        cardsRef.current.forEach((card, i) => {
-            gsap.fromTo(
-                card,
-                {
-                    opacity: 0,
-                    y: 40,
-                    scale: 0.95,
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.9,
-                    ease: 'back.out(1.7)', // cute pop-in bounce
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse',
-                    },
-                    delay: i * 0.15,
-                }
-            );
-        });
+        const animate = () => {
+            cardsRef.current.forEach((card, i) => {
+                if (!card) return;
+
+                gsap.fromTo(
+                    card,
+                    { opacity: 0, y: 40, scale: 0.95 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.9,
+                        ease: 'back.out(1.7)',
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse',
+                        },
+                        delay: i * 0.15,
+                    }
+                );
+            });
+        };
+
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(animate);
+        } else {
+            setTimeout(animate, 200);
+        }
     }, []);
 
     return (
@@ -47,10 +53,17 @@ const FeatureCards = () => {
                         <div
                             key={title}
                             ref={(el) => (cardsRef.current[i] = el)}
-                            className="card-border rounded-xl p-8 flex flex-col gap-4 opacity-0 transform translate-y-12"
+                            className="card-border rounded-xl p-8 flex flex-col gap-4"
+                            style={{ willChange: 'transform, opacity' }}
                         >
                             <div className="size-14 flex items-center justify-center rounded-full">
-                                <img src={imgPath} alt={title} />
+                                <img
+                                    src={imgPath}
+                                    alt={title}
+                                    width="56"
+                                    height="56"
+                                    loading="lazy"
+                                />
                             </div>
                             <h3 className="text-white text-2xl font-semibold mt-2">
                                 {title}
