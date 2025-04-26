@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import React from 'react';
 import { navLinks } from '../constants';
 
 const NavBar = () => {
@@ -52,4 +52,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default React.memo(NavBar);

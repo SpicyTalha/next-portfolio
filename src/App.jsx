@@ -1,8 +1,15 @@
-import React, { lazy, Suspense } from 'react';
+import React, {
+    lazy,
+    Suspense,
+    useEffect,
+    useState,
+    startTransition,
+} from 'react';
 import Navbar from './components/NavBar';
 import Footer from './sections/Footer';
+import SplashScreen from './components/SplashScreen';
 
-// Lazy-loaded sections
+// Lazy imports
 const Hero = lazy(() => import('./sections/Hero'));
 const ProjectSection = lazy(() => import('./sections/ProjectSection'));
 const FeatureCards = lazy(() => import('./sections/FeatureCards'));
@@ -11,24 +18,40 @@ const TechStack = lazy(() => import('./sections/TechStack'));
 const TechSection = lazy(() => import('./sections/TechSection'));
 const Contact = lazy(() => import('./sections/Contact'));
 
-// Fallback loader
-const Loading = () => (
-    <div
-        style={{
-            width: '100%',
-            padding: '2rem',
-            textAlign: 'center',
-            color: 'white',
-        }}
-    >
-        Loading section...
-    </div>
-);
+// Manually preload all components
+const preloadAll = () => {
+    import('./sections/Hero');
+    import('./sections/ProjectSection');
+    import('./sections/FeatureCards');
+    import('./sections/Experience');
+    import('./sections/TechStack');
+    import('./sections/TechSection');
+    import('./sections/Contact');
+    import('./sections/Footer');
+};
 
-const App = () => (
-    <>
-        <Navbar />
-        <Suspense fallback={<Loading />}>
+const App = () => {
+    const [isReady, setIsReady] = useState(false);
+
+    useEffect(() => {
+        // Start preloading during splash
+        preloadAll();
+
+        const timer = setTimeout(() => {
+            // Ensure transition doesn't block rendering
+            startTransition(() => {
+                setIsReady(true);
+            });
+        }, 2500);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (!isReady) return <SplashScreen />;
+
+    return (
+        <Suspense fallback={null}>
+            <Navbar />
             <Hero />
             <ProjectSection />
             <FeatureCards />
@@ -36,9 +59,9 @@ const App = () => (
             <TechStack />
             <TechSection />
             <Contact />
+            <Footer />
         </Suspense>
-        <Footer />
-    </>
-);
+    );
+};
 
 export default App;
