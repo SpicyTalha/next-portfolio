@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 
 const SplashScreen = () => {
@@ -13,7 +14,7 @@ const SplashScreen = () => {
             <motion.img
                 src="/images/logo-2-square-modified.png" // Make sure this exists or swap it
                 alt="Logo"
-                className="w-40 h-40"
+                className="w-40 h-0"
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 1 }}
